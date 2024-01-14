@@ -13,7 +13,7 @@ This project is a  application designed for selling a domain. It includes featur
 To get started with this project, clone the repository and install the dependencies:
 
 ```bash
-git clone https://your-repository-url.git
+git clone https://github.com/talhak55/nextjs-selldomain.git
 cd your-project-name
 ````
 
