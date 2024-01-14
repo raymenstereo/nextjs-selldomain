@@ -1,8 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js Domain Selling Website
 
+This project is a  application designed for selling a domain. It includes features for domain showcasing, contact forms, and email integration for inquiries.
+
+- [Getting Started](#getting-started)
+- [Docker Setup](#docker-setup)
+- [Environment Setup](#environment-setup)
+- [Features](#features)
+- [Contributing](#contributing)
+- [License](#license)
 ## Getting Started
 
-First, run the development server:
+To get started with this project, clone the repository and install the dependencies:
+
+```bash
+git clone https://your-repository-url.git
+cd your-project-name
+````
+
+Run the development server:
 
 ```bash
 npm run dev
@@ -16,21 +31,62 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Setup
+Before running the application, ensure you have the following environment variables set up in your `.env.local` file:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- `DOMAIN`: The domain name you are selling (e.g., `example.com`).
+- `EMAIL_TO`: The email address where you want to receive inquiries (e.g., `example@example.com`).
+- `SMTP_HOST`: Your SMTP server host (e.g., `mail.example.com`).
+- `SMTP_PORT`: Your SMTP server port (e.g., `465`).
+- `SMTP_USER`: Your SMTP username (e.g., `example@example.de`).
+- `SMTP_PASSWORD`: Your SMTP password.
+- `RECAPTCHA_SITE_KEY`: Your Google reCAPTCHA site key.
+- `RECAPTCHA_SECRET_KEY`: Your Google reCAPTCHA secret key.
 
-## Learn More
+## Docker Setup
+Build and run Docker Image
+```
+# Build the image
+docker build -t nextjs-selldomain .
 
-To learn more about Next.js, take a look at the following resources:
+# Run the container
+docker run -p 3000:3000 \
+-e DOMAIN=example.com \
+-e EMAIL_TO=example@example.com \
+-e SMTP_HOST=mail.example.com \
+-e SMTP_PORT=465 \
+-e SMTP_USER=example@example.com \
+-e SMTP_PASSWORD=password \
+-e RECAPTCHA_SITE_KEY= \
+-e RECAPTCHA_SECRET_KEY= \
+nextjs-selldomain
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **Domain Showcase**: Highlights the key features and benefits of the domain.
+- **Contact Form**: Integrated with email for potential buyers to make inquiries.
+- **reCAPTCHA Integration**: Protects the contact form from spam and abuse.
 
-## Deploy on Vercel
+## Contributing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Contributions to improve this project are welcome. Please create a pull request with your proposed changes.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## License
+
+MIT License
+
+Copyright (c) 2024 talhak55
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
