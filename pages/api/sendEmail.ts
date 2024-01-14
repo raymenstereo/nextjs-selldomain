@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer, {Transporter} from 'nodemailer';
 import axios from 'axios';
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const { email, message, recaptchaValue } = req.body;
     const recaptchaSecretKey = process.env.RECAPTCHA_SECRET_KEY;
 
@@ -37,5 +37,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             res.status(500).json({ success: false, error: "Ein unbekannter Fehler ist aufgetreten" });
         }    }
 };
+
+export default handler;
 
 
