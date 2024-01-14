@@ -44,10 +44,10 @@ Before running the application, ensure you have the following environment variab
 - `RECAPTCHA_SECRET_KEY`: Your Google reCAPTCHA secret key.
 
 ## Docker Setup
-Build and run Docker Image
+Pull and run Docker Image
 ```
-# Build the image
-docker build -t nextjs-selldomain .
+# Pull the image
+docker pull raymenstereo/nextjs-selldomain
 
 # Run the container
 docker run -p 3000:3000 \
