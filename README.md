@@ -14,7 +14,7 @@ To get started with this project, clone the repository and install the dependenc
 
 ```bash
 git clone https://github.com/talhak55/nextjs-selldomain.git
-cd your-project-name
+cd nextjs-selldomain
 ````
 
 Run the development server:
