@@ -1,4 +1,4 @@
-import React, {useEffect, useLayoutEffect, useState} from 'react';
+import React, { useLayoutEffect, useState} from 'react';
 import ContactForm from "@/app/components/ContactForm";
 import useForm from "@/app/hooks/useForm";
 import RootLayout from "@/app/layout/RootLayout";
@@ -55,7 +55,7 @@ export default function Home() {
             <div className="d-flex justify-content-center align-items-center" style={{height: '100vh'}}>
                 <div>
                     <h1 className="text-center font-bold">{domain ?? ''}</h1>
-                    <h4 className="text-center">Contact us</h4>
+                    <h4 className="text-center">Contact me</h4>
                     {recaptchaSiteKey && <ContactForm
                         onSubmit={handleSubmit}
                         recaptchaSiteKey={recaptchaSiteKey}
