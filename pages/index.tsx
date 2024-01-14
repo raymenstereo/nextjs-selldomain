@@ -1,6 +1,7 @@
 import React, {useEffect, useLayoutEffect, useState} from 'react';
 import ContactForm from "@/app/components/ContactForm";
 import useForm from "@/app/hooks/useForm";
+import RootLayout from "@/app/layout/RootLayout";
 
 export default function Home() {
     const [isLoading, setIsLoading] = useState(false);
@@ -49,24 +50,27 @@ export default function Home() {
             });
     }, []);
 
-    return (domain && recaptchaSiteKey ) && (
-        <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
-            <div>
-                <h1 className="text-center font-bold">{domain}</h1>
-                <h4 className="text-center">Contact us</h4>
-                <ContactForm
-                    onSubmit={handleSubmit}
-                    recaptchaSiteKey={recaptchaSiteKey}
-                    isLoading={isLoading}
-                    recaptchaValue={recaptchaValue}
-                    handleRecaptchaChange={handleRecaptchaChange}
-                    formMethods={formMethods}
-                />
-                <div className={'mt-3 text-center'}>
-                    {successMessage && <p className="text-success">{successMessage}</p>}
-                    {errorMessage && <p className="text-danger">{errorMessage}</p>}
+    return (
+        <RootLayout title={domain ?? ''}>
+            <div className="d-flex justify-content-center align-items-center" style={{height: '100vh'}}>
+                <div>
+                    <h1 className="text-center font-bold">{domain ?? ''}</h1>
+                    <h4 className="text-center">Contact us</h4>
+                    {recaptchaSiteKey && <ContactForm
+                        onSubmit={handleSubmit}
+                        recaptchaSiteKey={recaptchaSiteKey}
+                        isLoading={isLoading}
+                        recaptchaValue={recaptchaValue}
+                        handleRecaptchaChange={handleRecaptchaChange}
+                        formMethods={formMethods}
+                    />}
+                    <div className={'mt-3 text-center'}>
+                        {successMessage && <p className="text-success">{successMessage}</p>}
+                        {errorMessage && <p className="text-danger">{errorMessage}</p>}
+                    </div>
                 </div>
             </div>
-        </div>
+        </RootLayout>
+
     );
 }
