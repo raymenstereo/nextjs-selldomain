@@ -3,6 +3,8 @@ import { useState } from 'react';
 interface FormValues {
     email: string;
     message: string;
+    firstname: string;
+    lastname: string;
 }
 
 const useForm = (initialValues: FormValues) => {

@@ -1,8 +1,7 @@
 import { AppProps } from 'next/app';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import { useEffect, useState } from "react";
 
+import '../app/globals.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Spinner from "react-bootstrap/Spinner";
 
@@ -14,7 +13,6 @@ function MyApp({ Component, pageProps }: AppProps) {
             setLoading(false);
         }, 1000);
 
-        AOS.init();
     }, []);
 
     return (
