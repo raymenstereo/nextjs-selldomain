@@ -1,8 +1,9 @@
 import React, {useLayoutEffect, useState} from 'react'
-import ReCAPTCHA from "react-google-recaptcha";
-import Spinner from "react-bootstrap/Spinner";
+import success from '../assets/animations/success.json'
 import ContactForm from "@/app/components/ContactForm";
 import useForm from "@/app/hooks/useForm";
+import LottiePlayer from "@/app/components/LottiePlayer";
+import ErrorAlert from "@/app/components/ErrorAlert";
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
@@ -12,8 +13,19 @@ export default function Example() {
     const [domain, setDomain] = useState<string | null>(null);
     const [recaptchaSiteKey, setRecaptchaSiteKey] = useState<string>('');
     const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null);
+    const [isSuccessfully, setSuccess] = useState<boolean | null>(null);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const formMethods = useForm({ email: '', message: '' , firstname:'',lastname:''});
+
+    const defaultOptions = {
+        loop: false,
+        autoplay: true,
+        animationData: success,
+        rendererSettings: {
+            preserveAspectRatio: 'xMidYMid slice'
+        }
+    };
 
     useLayoutEffect(() => {
         fetch('/api/config')
@@ -37,9 +49,12 @@ export default function Example() {
 
             if (response.ok) {
                 setRecaptchaValue(null)
+                setSuccess(true)
             } else {
+                setErrorMessage('Error')
             }
         }catch (error){
+            setErrorMessage('Error')
         }finally {
             setIsLoading(false);
         }
@@ -69,7 +84,7 @@ export default function Example() {
                     For {domain ?? ''}
                 </p>
             </div>
-            {recaptchaSiteKey && <ContactForm
+            {recaptchaSiteKey && !isSuccessfully && <ContactForm
                 onSubmit={handleSubmit}
                 recaptchaSiteKey={recaptchaSiteKey}
                 isLoading={isLoading}
@@ -77,6 +92,15 @@ export default function Example() {
                 handleRecaptchaChange={handleRecaptchaChange}
                 formMethods={formMethods}
             />}
+            <div className="mt-10 flex justify-center">
+                {isSuccessfully && <LottiePlayer
+                    loop={false}
+                    animationData={success}
+                    play
+                    style={{width: 150, height: 150}}
+                />}
+                {errorMessage && <ErrorAlert message={errorMessage} />}
+            </div>
         </div>
     )
 }
